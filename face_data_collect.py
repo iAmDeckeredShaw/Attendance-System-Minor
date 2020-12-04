@@ -12,9 +12,16 @@ import cv2
 import pandas as pd
 import numpy as np
 from tkinter import messagebox
+import tkinter as tk
 import os
 
+
 def register(txt,txt2):
+	t = tk.Tk()
+	t.geometry('+1050+120')
+	t.configure(background='#122c57')
+	l1 = tk.Label(t,text="taking 10 photos\n",fg='white',bg='#122c57')
+	l1.pack()
 	#Init Camera
 
 	cap = cv2.VideoCapture(0)
@@ -51,23 +58,31 @@ def register(txt,txt2):
 
 			#Extract (Crop out the required face) : Region of Interest
 			offset = 10
-			face_section = frame[y-offset:y+h+offset,x-offset:x+w+offset]
+			face_section = frame[y:y+h,x:x+w]
 			face_section = cv2.resize(face_section,(100,100))
 
 			skip += 1
-			if skip%5==0:
+			if skip%8==0:
+				
 				face_data.append(face_section)
 				''' we can apply PCA here'''
+				
+				l2 = tk.Label(t,text=str(len(face_data))+"\n",fg='white',bg='#122c57')
+				l2.pack()				
 				print(len(face_data))
 
 
 		cv2.imshow("Frame",frame)
 		cv2.imshow("Face Section",face_section)
-
+		t.update()
 		key_pressed = cv2.waitKey(1) & 0xFF
 		if key_pressed == ord('q') or len(face_data) >= 10:
+			t.destroy()
 			break
 
+
+
+	
 	cap.release()
 	cv2.destroyAllWindows()
 
@@ -91,4 +106,4 @@ def register(txt,txt2):
 	   df.to_csv('student_details.csv', mode='a', header=False,index=False)
 		
 	
-	messagebox.showinfo("Notification", "You have been registered successfully") 
+	tk.messagebox.showinfo("Notification", "You have been registered successfully") 

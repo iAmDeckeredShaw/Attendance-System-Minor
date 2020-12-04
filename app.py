@@ -5,6 +5,9 @@ from face_recognition import *
 
 
 window = tk.Tk()
+window.bind('<Escape>', lambda event: window.destroy())
+window.bind('<a>', lambda event: window.state('zoomed'))
+
 window.title("Attendance System")
 window.configure(background='pink')
 window.grid_rowconfigure(0, weight=1)
@@ -39,10 +42,12 @@ lbl3.place(x=120, y=570-y_cord)
 # message2 = tk.Label(window, text="" ,fg="red"   ,bg="yellow",activeforeground = "green",width=60  ,height=4  ,font=('times', 15, ' bold ')) 
 # message2.place(x=700, y=570-y_cord)
  
-     
+
 takeImg = tk.Button(window, text="REGISTER",command= lambda arg1=txt, arg2=txt2 : register(arg1,arg2)
-,fg="white"  ,bg="blue"  ,width=25  ,height=2, activebackground = "pink" ,font=('Times New Roman', 15, ' bold '), state="disabled")
+,fg="white"  ,bg="blue"  ,width=25  ,height=2, activebackground = "pink" ,
+font=('Times New Roman', 15, ' bold '), state="disabled")
 takeImg.place(x=120, y=425-y_cord)
+
 trackImg = tk.Button(window, text="MARK ATTENDANCE" , command=mark_attendance,fg="white"  ,bg="red"  ,width=35  ,height=3, activebackground = "pink" ,font=('Times New Roman', 15, ' bold '))
 trackImg.place(x=780-x_cord, y=412-y_cord)
 
