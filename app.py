@@ -6,7 +6,7 @@ from face_recognition import *
 
 window = tk.Tk()
 window.bind('<Escape>', lambda event: window.destroy())
-window.bind('<a>', lambda event: window.state('zoomed'))
+window.state('zoomed')
 
 window.title("Attendance System")
 window.configure(background='pink')

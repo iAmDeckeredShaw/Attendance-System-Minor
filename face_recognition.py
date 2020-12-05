@@ -141,19 +141,6 @@ def mark_attendance():
 		if os.path.exists(wb_path):
 			return openpyxl.load_workbook(wb_path)
 		return openpyxl.Workbook()
-
-	# student_table=pd.read_csv('student_details.csv')
-	is_registered=True
-	# for index, row in student_table.iterrows(): 
-	# 	if row['Name']==pred_name:
-	# 		is_registered=True
-	# 		break
-
-	# if is_registered==False:
-	# 	cap.release()
-	# 	cv2.destroyAllWindows()
-	# 	messagebox.showinfo("Notification", "Student data not available\nPlease Register yourself!!") 
-	# 	return
 		
 	roll=student_table[student_table['name']==pred_name].iloc[0]['roll']
 	dt=datetime.datetime.now()
