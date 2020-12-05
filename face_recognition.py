@@ -16,15 +16,18 @@ import os
 import openpyxl
 import datetime
 import pandas as pd
-from tkinter import messagebox
+import tkinter as tk
 
 def mark_attendance():
+	var = tk.messagebox.showinfo("Notification", "If Your Name Appears on your Face Press q!")
+
+	
 	########## KNN CODE ############
 	def distance(v1, v2):
 		# Eucledian 
 		return np.sqrt(((v1-v2)**2).sum())
 
-	def knn(train, test, k=5):
+	def knn(train, test, k=3):
 		dist = []
 		
 		for i in range(train.shape[0]):
@@ -112,7 +115,7 @@ def mark_attendance():
 
 			#Get the face ROI
 			offset = 10
-			face_section = frame[y-offset:y+h+offset,x-offset:x+w+offset]
+			face_section = frame[y:y+h,x:x+w]
 			face_section = cv2.resize(face_section,(100,100))
 
 			#Predicted Label (out)
@@ -124,10 +127,11 @@ def mark_attendance():
 			cv2.rectangle(frame,(x,y),(x+w,y+h),(0,255,255),2)
 
 		cv2.imshow("Faces",frame)
-
+		
 		key = cv2.waitKey(1) & 0xFF
 		if key==ord('q'):
 			break
+
 
 	# Marking attendance of student in attendance sheet
 	cap.release()
@@ -165,4 +169,4 @@ def mark_attendance():
 
 	
 
-	messagebox.showinfo("Notification", "Your attendance is marked") 
+	tk.messagebox.showinfo("Notification", "Your attendance is marked") 

@@ -28,27 +28,25 @@ lbl.place(x=110, y=200-y_cord)
 
 txt = tk.Entry(window,width=30,bg="white" ,fg="blue",font=('Times New Roman', 15, ' bold '))
 txt.place(x=120, y=300-y_cord)
+# txt.pack(ipady=3)
 
 lbl2 = tk.Label(window, text="Enter Your Name",width=20  ,fg="black"  ,bg="pink"    ,height=2 ,font=('Times New Roman', 25, ' bold ')) 
 lbl2.place(x=740-x_cord, y=200-y_cord)
 
 txt2 = tk.Entry(window,width=30  ,bg="white"  ,fg="blue",font=('Times New Roman', 15, ' bold ')  )
 txt2.place(x=780-x_cord, y=300-y_cord)
+# txt2.pack(ipady=3)
 
 lbl3 = tk.Label(window, text="ATTENDANCE",width=20  ,fg="white"  ,bg="lightgreen"  ,height=2 ,font=('Times New Roman', 30, ' bold ')) 
 lbl3.place(x=120, y=570-y_cord)
 
 
-# message2 = tk.Label(window, text="" ,fg="red"   ,bg="yellow",activeforeground = "green",width=60  ,height=4  ,font=('times', 15, ' bold ')) 
-# message2.place(x=700, y=570-y_cord)
- 
-
 takeImg = tk.Button(window, text="REGISTER",command= lambda arg1=txt, arg2=txt2 : register(arg1,arg2)
-,fg="white"  ,bg="blue"  ,width=25  ,height=2, activebackground = "pink" ,
+,fg="white"  ,bg="blue"  ,width=30  ,height=2, activebackground = "pink" ,
 font=('Times New Roman', 15, ' bold '), state="disabled")
-takeImg.place(x=120, y=425-y_cord)
+takeImg.place(x=120, y=412-y_cord)
 
-trackImg = tk.Button(window, text="MARK ATTENDANCE" , command=mark_attendance,fg="white"  ,bg="red"  ,width=35  ,height=3, activebackground = "pink" ,font=('Times New Roman', 15, ' bold '))
+trackImg = tk.Button(window, text="MARK ATTENDANCE" , command=mark_attendance,fg="white"  ,bg="red"  ,width=30  ,height=2, activebackground = "pink" ,font=('Times New Roman', 15, ' bold '))
 trackImg.place(x=780-x_cord, y=412-y_cord)
 
 ## events
