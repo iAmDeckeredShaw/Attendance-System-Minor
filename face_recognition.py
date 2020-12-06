@@ -17,6 +17,7 @@ import openpyxl
 import datetime
 import pandas as pd
 import tkinter as tk
+from pca import reduce_dimentions
 
 def mark_attendance():
 	var = tk.messagebox.showinfo("Notification", "If Your Name Appears on your Face Press q!")
@@ -27,7 +28,7 @@ def mark_attendance():
 		# Eucledian 
 		return np.sqrt(((v1-v2)**2).sum())
 
-	def knn(train, test, k=3):
+	def knn(train, test, k=5):
 		dist = []
 		
 		for i in range(train.shape[0]):
@@ -57,7 +58,7 @@ def mark_attendance():
 	face_cascade = cv2.CascadeClassifier("haarcascade_frontalface_alt.xml")
 
 	skip = 0
-	dataset_path = './data/'
+	dataset_path = './pca_data/'
 
 	face_data = [] 
 	labels = []     # we will use roll number as labels
@@ -119,6 +120,9 @@ def mark_attendance():
 			face_section = cv2.resize(face_section,(100,100))
 
 			#Predicted Label (out)
+
+			face_section = reduce_dimentions(face_section)
+
 			out = knn(trainset,face_section.flatten())
 
 			#Display on the screen the name and rectangle around it
@@ -156,4 +160,4 @@ def mark_attendance():
 
 	
 
-	tk.messagebox.showinfo("Notification", "Your attendance is marked") 
+	tk.messagebox.showinfo("Notification", pred_name + "! Your attendance is marked") 

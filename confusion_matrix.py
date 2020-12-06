@@ -34,7 +34,7 @@ def knn(train, test):
 ################################
 
 skip = 0
-dataset_path = './val_data/'
+dataset_path = './pca_val_data/'
 
 face_data = [] 
 labels = []     # we will use roll number as labels
@@ -73,7 +73,7 @@ def knn_accuracy():
     
 
 actual , predicted = knn_accuracy()
-sys.stdout = open('result', 'a')
+sys.stdout = open('pca_result', 'a')
 print('For k = '+ str(k))
 print()
 cm = confusion_matrix(actual,predicted,labels = np.unique(actual))

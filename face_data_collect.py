@@ -14,6 +14,7 @@ import numpy as np
 from tkinter import messagebox
 import tkinter as tk
 import os
+from pca import reduce_dimentions
 
 
 def register(txt,txt2):
@@ -31,7 +32,7 @@ def register(txt,txt2):
 
 	skip = 0
 	face_data = []
-	dataset_path = './data/'
+	dataset_path = './pca_data/'
 	name = txt2.get().upper()
 	roll_no = txt.get().upper()
 	# counter = 10
@@ -63,9 +64,11 @@ def register(txt,txt2):
 
 			skip += 1
 			if skip%8==0:
-				
-				face_data.append(face_section)
 				''' we can apply PCA here'''
+				face_section = reduce_dimentions(face_section)
+				# face_section = reduce_dimentions(face_section)
+				face_data.append(face_section)
+				
 				
 				l2 = tk.Label(t,text=str(len(face_data))+"\n",fg='white',bg='#122c57')
 				l2.pack()				
